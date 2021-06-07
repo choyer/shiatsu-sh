@@ -399,9 +399,10 @@ _usage_() {
     -q, --quiet         Quiet (no output)
     -v, --verbose       Output more information. (Items echoed to 'verbose')
 
+    --clean             Delete all *.csv files in current directory
     --keepworkingdir    Keep working data directory. Default removes it.
     --delete            Delete and remove the entire 'shiatsu-data' directory
-    --force             Skip all user interaction.  Implied 'Yes' to all actions
+    --force             Skip all user interaction. Implied 'Yes' to all actions
     --version           Output version
 
   ${bold}DESCRIPTION${reset}
@@ -478,6 +479,10 @@ _parseOptions_() {
       --endopts)
         shift
         break
+        ;;
+      --clean)
+        _execute_ -s -v "rm -vf ./*.csv"
+        _safeExit_ 
         ;;
       --delete)
         _seekConfirmation_ "Are you sure you want to DELETE all past data in (${baseDataDir})?" && _safeDelete_ "${baseDataDir}" || info "NO data removed!"
