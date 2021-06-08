@@ -294,7 +294,7 @@ EOF
   # Calculate sales tax amounts
   _execute_ -s "gawk -f \"${awkScriptDir}/clinicsense-tax.awk\" \"${workingDataDir}/clincsense-paystone-data.csv\" \
                 > \"${workingDataDir}/service-transaction-data.csv\"" \
-                "Calculate Sales Tax"
+                "Calculate Sales Tax & Rounding Adjustments"
 
   # Final pass over data to format it just right
   _execute_ -s "gawk -f \"${awkScriptDir}/clinicsense-field-format.awk\" \"${workingDataDir}/service-transaction-data.csv\" \
