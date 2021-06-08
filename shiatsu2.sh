@@ -392,7 +392,7 @@ _usage_() {
     $(basename "$0") [OPTION(S)]...
 
   ${bold}OPTIONS${reset}
-    -d, --display       Display shiatsu-data directory. Shows past script executions and contents
+    -d, --data          Display shiatsu-data directory to shows past script executions and contents
     -h, --help          Display this help and exit
     -l, --loglevel      One of: FATAL, ERROR, WARN, INFO, DEBUG, ALL, OFF  (Default is 'ERROR')
     -n, --dryrun        Non-destructive. Makes no permanent changes
@@ -456,7 +456,7 @@ _parseOptions_() {
   # Read the options and set stuff
   while [[ ${1-} == -?* ]]; do
     case $1 in
-      -d | --display)
+      -d | --data)
         ls ./shiatsu-data/*/
         _safeExit_
       ;;
