@@ -353,8 +353,20 @@ ________________________________________________________________________________
 EOF
   printf ${reset}
 
-
 } # end _mainScript_
+
+
+_showInvoices_() {
+  # DESC:   Shows invoices in a nice way
+  # ARGS:   N/A
+  # OUTS:   Prints invoices to STDOUT
+  # USAGE:  _showInvoices_
+
+  # TODO: use awk to group by date, calculate invoice total, display nicer
+
+  _execute_ -v "xsv select \"Invoice Date\",\"Invoice Number\",\"Customer Name\",\"Unit Price\" ./waveapp-invoice-import-data.csv \
+                | xsv table"
+}
 
 
 _safeDelete_() {
@@ -399,6 +411,7 @@ _usage_() {
     -q, --quiet         Quiet (no output)
     -v, --verbose       Output more information. (Items echoed to 'verbose')
 
+    --invoices          Show invoices from last script run.
     --clean             Delete all *.csv files in current directory
     --keepworkingdir    Keep working data directory. Default removes it.
     --delete            Delete and remove the entire 'shiatsu-data' directory
@@ -472,6 +485,10 @@ _parseOptions_() {
       -v | --verbose) verbose=true ;;
       -q | --quiet) quiet=true ;;
       --force) force=true ;;
+      --invoices) 
+        _showInvoices_
+        _safeExit_
+        ;;
       --version) 
         echo ${version} 
         _safeExit_ 
