@@ -56,13 +56,8 @@ NR>1 {
   printf("%s,%s,%s,%s,%s,%s,%s,%.2f,%.2f,%d%,%s,%.2f\n",$1,$2,$3,$4,$5,$6,$8,amount,subtotal,taxrate,tax_name,taxamount)
 
   # account for rounding problems by rounding subtotal to x.00 -> calculate sales tax -> round again
-  rndSubtotal = subtotal * 100
-  rndSubtotal = int(rndSubtotal + 0.5)
-  rndSubtotal = rndSubtotal / 100
-
-  postTaxCalcAmount = (rndSubtotal * (1 + taxrate/100)) * 100
-  postTaxCalcAmount = int(postTaxCalcAmount + 0.5)
-  postTaxCalcAmount = postTaxCalcAmount / 100
+  rndSubtotal = round(subtotal,2)
+  postTaxCalcAmount = round((rndSubtotal * (1 + taxrate/100)),2)
 
   rndAdjustment = amount - postTaxCalcAmount
 
@@ -71,4 +66,19 @@ NR>1 {
     printf("%s,%s,%s,%s,%s,%s,%s,%.2f,%.2f,%d%,%s,%.2f\n",$1,$2,$3,adjItemName,$5,$6,$8,"",rndAdjustment,"","","")
   }
 
+}
+
+function round(x, p,   s) {
+  # DESC:     Rounds float to the number of decimals specified
+  # ARGS:     x (required)  - number to round. float valid
+  #           p             - decimal place value rounded to
+  #                           defaults 1 if unspecified.
+  # RETURN:   rounded float
+  # USAGE:    round(5.25,2) 
+  # NOTES:    Handles positive/negative floats. DOES NOT WORK ON INTS.
+  p = 10^p
+  s = 1
+
+  if (x < 0) { x = -x; s = -1; }
+  return s * int(x * p + .5) / p
 }
