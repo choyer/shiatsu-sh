@@ -75,7 +75,7 @@ function round(x, p,   s) {
   #                           defaults 1 if unspecified.
   # RETURN:   rounded float
   # USAGE:    round(5.25,2) 
-  # NOTES:    Handles positive/negative floats. DOES NOT WORK ON INTS.
+  # NOTES:    Handles positive/negative floats & integers
   p = 10^p
   s = 1
 
