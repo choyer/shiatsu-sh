@@ -362,9 +362,9 @@ _showInvoices_() {
   # OUTS:   Prints invoices to STDOUT
   # USAGE:  _showInvoices_
 
-  # TODO: use awk to group by date, calculate invoice total, display nicer
-
-  _execute_ -v "xsv select \"Invoice Date\",\"Invoice Number\",\"Customer Name\",\"Unit Price\" ./waveapp-invoice-import-data.csv \
+  # TODO: group by date, calculate invoice total, display in a nice manner.
+  # for now this works
+  _execute_ -v "xsv select \"Invoice Date\",\"Invoice Number\",\"Memo\",\"Customer Name\",\"Item Name\",\"Unit Price\" ./waveapp-invoice-import-data.csv \
                 | xsv table"
 }
 
