@@ -11,16 +11,20 @@
 # This has grown to the point where it would be better written in an actual
 # programming language. But that will have to wait for another day.
 #
-version="2.0.0"               # Sets version variable
+version="2.1.0"               # Sets version variable
 #
 #
 # HISTORY:
 #
-# * 06/01/2021 - v1.0.0  - First Formalized Creation. A pale
-#                          shadow of what it is today.
+# * 07/06/2021 - v2.1.0  - Anonymize client names and
+#                          consolidate in daily invoice.
 #
 # * 06/04/2021 - v2.0.0  - Incorporated Nathaniel Landau's 
 #                          amazing BASH script utils.
+#
+# * 06/01/2021 - v1.0.0  - First Formalized Creation. A pale
+#                          shadow of what it is today.
+#
 #
 # THANKS:
 #  Nate Landau and his bash scripting helpers
