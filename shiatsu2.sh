@@ -228,6 +228,10 @@ EOF
   local -i totalCancAppt=$(xsv search "\[(Canceled)\]" ${workingDataDir}/appointment-data.csv | xsv count)
   info "Total Canceled Appointment Count: ${bold}${totalCancAppt}${reset}"
 
+  # Count 'No-show' records in data file. These records are kept as no-shows can be charged to customer in some cases.
+  local -i totalNoShowAppt=$(xsv search "\[(No-show)\]" ${workingDataDir}/appointment-data.csv | xsv count)
+  info "Total No-show Appointment Count: ${bold}${totalNoShowAppt}${reset}"
+
   local -i totalApptExpectCount=$(( totalApptCount - totalCancAppt ))
   info "Total Available Pre-Join Appointment Count: ${bold}${totalApptExpectCount}${reset} (Total: ${totalApptCount} - Canceled: ${totalCancAppt})"
 
