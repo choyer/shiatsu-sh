@@ -65,6 +65,12 @@ Conduit between ClinicSense CSV data + Paystone CSV data --> WaveApp Accounting
 
     # Examples:
 
+    # Normal execution
+    shiatsu2.sh --verbose
+
+    # Clean-up after execution (e.g. delete all input/output files)
+    shiatsu2.sh --clean
+
     # Set log level
     shiatsu2.sh --loglevel 'WARN'
 ```

@@ -435,6 +435,12 @@ _usage_() {
 
     # Examples:
 
+    # Normal execution
+    $(basename "$0") --verbose
+
+    # Clean-up after execution (e.g. delete all input/output files)
+    $(basename "$0") --clean
+
     # Set log level
     $(basename "$0") --loglevel 'WARN'
 
