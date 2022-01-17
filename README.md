@@ -2,9 +2,7 @@
 
 ## What is this?
 
-A scripted means to associate exported [ClinicSense](https://clinicsense.com/) **appointment** and **payment** CSV data with [Paystone](https://www.paystone.com/) **batch** CSV data for the purpose of importing it into [Wave Accounting](https://www.waveapps.com/) using [Wave Connect](https://support.waveapps.com/hc/en-us/articles/360020768272-Wave-Connect-Easily-import-and-export-data-with-Wave-s-Google-Sheets-add-on-) via their officially supported [Google Sheets add-on](https://workspace.google.com/marketplace/app/wave_connect/90421189176).
-
-Patient info (e.g. their name) is anonymized when imported into Wave Accounting.
+A scripted means to associate exported [ClinicSense](https://clinicsense.com/) **appointment** and **payment** CSV data with [Paystone](https://www.paystone.com/) **batch** CSV data for the purpose of importing it into [Wave Accounting](https://www.waveapps.com/) using [Wave Connect](https://support.waveapps.com/hc/en-us/articles/360020768272-Wave-Connect-Easily-import-and-export-data-with-Wave-s-Google-Sheets-add-on-) via their officially supported [Google Sheets add-on](https://workspace.google.com/marketplace/app/wave_connect/90421189176). Patient info (e.g. their name) is anonymized when imported into Wave Accounting.
 
 ## Why?
 
@@ -15,18 +13,18 @@ It started as a small simple AWK script and grew into this monstrosity of a shel
 
 ## Workflow
 
-	1. Within ClinicSense select *Reports* -> *Appointments*, choose date range from dropdown menu. Click *Generate Report* button.
-	2. Click gear icon -> *Download CSV* to save .csv file to local computer
-	3. Still within ClinicSense select *Reports* -> *Payments*, choose date range from dropdown menu. Click *Generate Report* button.
-	4. Click gear icon -> *Download CSV* to save .csv file to local computer
-	5. Within Paystone Hub select *Batches* -> *Filter*, choose date range and click apply
-	6. Select *Export* to save .csv file to local computer
-	7. Copy the 3 .csv files to the same directory containing the shiatsu2.sh script
-	8. Run the shiatsu2.sh script using `./shiatsu2.sh --verbose`
-	9. The verbose output is extremely detailed. It makes great bedtime reading.
-	10. Use the output files, namely `waveapp-invoice-import-data.csv` with a Wave Connect in Google Sheets.
+1. Within ClinicSense select *Reports* -> *Appointments*, choose date range from dropdown menu. Click *Generate Report* button.
+2. Click gear icon -> *Download CSV* to save .csv file to local computer
+3. Still within ClinicSense select *Reports* -> *Payments*, choose date range from dropdown menu. Click *Generate Report* button.
+4. Click gear icon -> *Download CSV* to save .csv file to local computer
+5. Within Paystone Hub select *Batches* -> *Filter*, choose date range and click apply
+6. Select *Export* to save .csv file to local computer
+7. Copy the 3 .csv files to the same directory containing the shiatsu2.sh script
+8. Run the shiatsu2.sh script using `./shiatsu2.sh --verbose`
+9. The verbose output is extremely detailed. It makes great bedtime reading.
+10. Use the output files, namely `waveapp-invoice-import-data.csv` with a Wave Connect in Google Sheets.
 
-	Note: For expected results, the date range used for each of the 3 data files should be the same otherwise non-matching data will be discarded from the final merged data.
+Note: For expected results, the date range used for each of the 3 data files should be the same otherwise non-matching data will be discarded from the final merged data.
 
 ## Usage
 
@@ -76,7 +74,7 @@ Conduit between ClinicSense CSV data + Paystone CSV data --> WaveApp Accounting
 
 ### GNU Awk (gawk)
 
-GNU Awk is **required**. Default os x awk will throw errors with some of the awk scripts.
+GNU Awk is **required**. Default MacOS awk will throw errors with some of these awk scripts.
 
 Install it on MacOS via homebrew `brew install gawk`
 
@@ -103,4 +101,5 @@ lolcat makes text rainbows. [more info & source](https://github.com/busyloop/lol
 
 - There's a lot going on, this script is really only usable to someone really comfortable with bash and awk scripts.
 - It's up to you how you want the invoice data imported into Wave. I would recommend using a 7 day period of appointments per invoice. This allows you to reconcile 1 week at a time. I have found weird things happen in Wave Accounting with invoices that contain too many line items (e.g. 100+ line items).
-- There is a some very customized data massaging going on, like creating line items for rounding adjustments.
+- There is some very customized data massaging going on, like creating line items for rounding adjustments.
+- The entire process is still very much an exercise in manual labour. There is no ClinicSense API and the Wave API is *next level* GraphQL, so for now getting data out & in is entirely manual.
